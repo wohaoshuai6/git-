@@ -1,0 +1,45 @@
+{% extends 'students/base.html' %}
+{% load static %}
+
+{% block title %}首页 - 学生信息管理 - 新乡工程学院{% endblock %}
+
+{% block content %}
+
+<!-- 图书馆外景横幅 -->
+<div class="hero-banner">
+    <img class="hero-bg" src="{% static 'img/hero.jpg' %}" alt="新乡工程学院">
+    <div class="hero-overlay">
+        <h1>班级学生信息管理</h1>
+        <p class="hero-sub">信息工程学院 · 学生档案管理与查询平台</p>
+        <div class="hero-actions">
+            <a class="btn btn-white" href="{% url 'student_list' %}">查看学生列表</a>
+            <a class="btn btn-ghost" href="{% url 'student_add' %}">添加学生</a>
+        </div>
+    </div>
+</div>
+
+<!-- 校训条 -->
+<div class="motto-strip">
+    <div class="motto-text">知行日新&ensp;·&ensp;至善至真</div>
+    <div class="motto-sub">新乡工程学院校训</div>
+</div>
+
+<!-- 统计数据 -->
+<div class="stat-row">
+    <div class="stat-item">
+        <div class="stat-icon blue">&#x1f393;</div>
+        <div>
+            <div class="stat-num">{{ student_count }}</div>
+            <div class="stat-label">在册学生总数</div>
+        </div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-icon green">&#x1f3eb;</div>
+        <div>
+            <div class="stat-num">{{ class_count }}</div>
+            <div class="stat-label">班级数量</div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

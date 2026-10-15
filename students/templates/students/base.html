@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}学生信息管理 - 新乡工程学院{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <!-- 顶部校名校训条 -->
+    <div class="top-bar">
+        <div class="container">
+            <span>新乡工程学院 · 信息工程学院</span>
+            <span class="motto">知行日新&ensp;至善至真</span>
+        </div>
+    </div>
+
+    <!-- 主导航 -->
+    <nav class="navbar">
+        <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static 'img/logo.png' %}" alt="校徽">
+            学生信息管理
+        </a>
+        <ul class="navbar-nav">
+            <li class="nav-item {% if request.resolver_match.url_name == 'index' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'index' %}">首页</a>
+            </li>
+            <li class="nav-item {% if 'student' in request.resolver_match.url_name %}active{% endif %}">
+                <a class="nav-link" href="{% url 'student_list' %}">学生管理</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'student_add' %}">添加学生</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'admin:index' %}">后台</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container main">
+        {% if messages %}
+        <div class="alert-wrap">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                <span>{{ message }}</span>
+                <button class="close" onclick="this.parentElement.remove()">&times;</button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer">
+        <img src="{% static 'img/logo.png' %}" alt="">
+        新乡工程学院 · 信息工程学院 &copy; 2026
+    </div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    {% load static %}
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

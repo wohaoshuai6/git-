@@ -1,0 +1,46 @@
+{% extends 'students/base.html' %}
+
+{% block title %}{{ student.name }} - 学生详情{% endblock %}
+
+{% block content %}
+
+<div class="breadcrumb">
+    <a href="{% url 'index' %}">首页</a><span class="sep">/</span>
+    <a href="{% url 'student_list' %}">学生列表</a><span class="sep">/</span>
+    <span class="current">{{ student.name }}</span>
+</div>
+
+<div class="detail-card">
+    <div class="card-head">{{ student.name }} 的信息</div>
+    <div class="card-body">
+        <div class="dl-row">
+            <div class="dl-label">姓名</div>
+            <div class="dl-value">{{ student.name }}</div>
+        </div>
+        <div class="dl-row">
+            <div class="dl-label">性别</div>
+            <div class="dl-value">{{ student.gender }}</div>
+        </div>
+        <div class="dl-row">
+            <div class="dl-label">年龄</div>
+            <div class="dl-value">{{ student.age }} 岁</div>
+        </div>
+        <div class="dl-row">
+            <div class="dl-label">班级</div>
+            <div class="dl-value">{{ student.class_name.name }}</div>
+        </div>
+        <div class="dl-row">
+            <div class="dl-label">学号</div>
+            <div class="dl-value">{{ student.student_id }}</div>
+        </div>
+    </div>
+    <div class="card-foot">
+        <a href="{% url 'student_list' %}" class="btn btn-outline">返回列表</a>
+        <div>
+            <a href="{% url 'student_edit' student.pk %}" class="btn btn-outline">编辑</a>
+            <a href="{% url 'student_delete' student.pk %}" class="btn btn-danger">删除</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
